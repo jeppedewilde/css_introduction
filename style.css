@@ -27,6 +27,9 @@ body{
     background-color: var(--body-background);
     color: var(--text-color);
 }
+h1{
+    color: red;
+}
 
 /* figure:has(figcaption) {
     
@@ -84,6 +87,59 @@ li:nth-child(4n + 2){
     background-color: blue;
 }
 
+:root:has(label:nth-of-type(1) input:checked):has(label:nth-of-type(2) input:checked):not(:has(label:nth-of-type(n+3) input:checked)) li {
+    background-color: yellow;
+    img {
+        animation: rotation 5s linear infinite;
+    }
+    h2 {
+        color: black;
+    }
+    p {
+        color: black;
+    }
+}
+
+@keyframes rotation {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+:root:has(label:nth-of-type(1) input:checked):has(label:nth-of-type(2) input:checked):has(label:nth-of-type(3) input:checked):has(label:nth-of-type(4) input:checked) {
+    img {
+        animation: party 0.5s ease-in-out infinite alternate;
+    }
+    body {
+        animation: rainbow 2s linear infinite;
+    }
+}
+
+@keyframes party {
+    from { 
+        transform: rotate(0deg); 
+        filter: hue-rotate(0deg);
+        scale: 1;
+    }
+    to { 
+        transform: rotate(90deg); 
+        filter: hue-rotate(180deg);
+        scale: 2;
+    }
+}
+
+@keyframes rainbow {
+    from {
+        filter: hue-rotate(0deg);
+    }
+    to {
+        filter: hue-rotate(360deg); /
+    }
+}
+
 /* li's eva */
 li:nth-child(4n + 3){
     grid-column: 2 / 4;
@@ -99,9 +155,7 @@ figure:has(figcaption) {
     background-color:lightpink;
 }
 
-/* li's Arvid */
-
-li:nth-child(4n) {
+li:nth-child(4n) {              /* li's Arvid */
     grid-column: 1 / 3;
 }
 
@@ -114,12 +168,14 @@ label:has(input:checked) {      /* Kijkt of checkbox aangeklikt is, en veranderd
     border: 3px solid grey;
 }
 
-li:has(> img) {
-    background-color: black;
+li:has(> img) {                 /* Elke Li die direct een img element erna heeft wordt geselecteerd */
+    background- : beige;
+    
 }
-
-
-
+li:not(:has(img)) p{
+    color: aqua;
+    text-transform: capitalize;
+}
 
 img {
     border-radius: .3em;
@@ -138,5 +194,14 @@ img {
 }
 
 img{
-    width: 3em;
+    width: 5em;
+}
+
+
+img:has(+ p) {
+    border: .3em solid purple;
+}
+
+h2:has(+p) {
+    background-color: rgb(38, 250, 38);
 }
